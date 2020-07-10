@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 100, 2, 100 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.0705882, 0.211765, 0.407843, 1 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 50, 1, 50 )
+
+[sub_resource type="CubeMesh" id=4]
+size = Vector3( 5, 1, 15 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 2.5, 0.5, 7.5 )
+
+[node name="Level" type="Spatial"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0744, 0 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.913155, 0.407613, 0, -0.407613, -0.913155, 0, 21.9807, -21.5298 )
+
+[node name="Floor" type="StaticBody" parent="."]
+
+[node name="Floor" type="MeshInstance" parent="Floor"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+shape = SubResource( 3 )
+
+[node name="Ramp" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.933048, 0.359753, 0, -0.359753, 0.933048, 0, 3.08142, 23.8574 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Ramp"]
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Ramp"]
+shape = SubResource( 5 )
